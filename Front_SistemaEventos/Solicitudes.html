@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>EVENTOS</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    /* Fijar el encabezado en la parte superior */
+    #header {
+      position: fixed;  /* Mantenerlo fijo en la parte superior */
+      top: 0;           /* Fijar a la parte superior de la página */
+      left: 0;          /* Alinearlo al borde izquierdo */
+      width: 100%;      /* Asegurarse de que el encabezado ocupe todo el ancho */
+      z-index: 1000;    /* Asegurar que el encabezado esté por encima de otros elementos */
+      background-color: rgba(0, 0, 0, 0.8);  /* Fondo oscuro con algo de transparencia */
+      color: white;     /* Texto blanco */
+      padding: 15px 0;  /* Espaciado del encabezado */
+    }
+
+    /* Añadir espacio superior para el contenido de la página, para que no se sobreponga al encabezado */
+    .main {
+      margin-top: 80px;  /* El espacio será un poco más grande que la altura del encabezado */
+    }
+    /* Cambia el fondo del dropdown a un color más oscuro */
+    .dropdown-menu {
+      background-color: #333;
+      color: white;
+    }
+    .dropdown-menu .dropdown-item {
+      color: white;
+    }
+    .dropdown-menu .dropdown-item:hover {
+      background-color: #555;
+      color: #fff;
+    }
+
+    /* Estilos para la sección del filtro */
+  /*.filter-container {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }*/
+
+  /*.filter-form {
+    max-width: 900px;
+    margin: 0 auto;
+  }*/
+
+  .filter-form label {
+    font-weight: bold; /* Hacer las etiquetas más destacadas */
+  }
+
+  .filters {
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  .table {
+    border: 1px solid #dee2e6;
+  }
+
+  .table th {
+    background-color: #768ea7;
+    color: #fff;
+    text-align: center;
+  }
+
+  .table td {
+    text-align: center;
+  }
+
+  .btn-filter {
+    background-color: #148bdb;
+    color: white;
+  }
+
+  .btn-filter:hover {
+    background-color: #148bdb;
+  }
+  </style>
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">EVENTOS</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html" class="active">Home<br></a></li>
+          <li><a href="about.html">Sobre Nosotros</a></li>
+          <li><a href="services.html">Servicios</a></li>
+          <li><a href="contact.html">Contactános</a></li>
+          <!-- Menú desplegable -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+              <i class="bi bi-list fs-4"></i>
+            </a>
+            <ul class="dropdown-menu" style="background-color: cadetblue;">
+              <li><a href="solicitudes.html" class="dropdown-item">Listado de Solicitudes</a></li>
+              <li><a href="otra-opcion.html" class="dropdown-item">Otra Opción</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      
+    </div>
+  </header>
+
+  <main class="main">
+
+    <section class="section">
+        <div class="container" data-aos="fade-up">
+          <h2 class="text-center">Listado de Solicitudes</h2>
+          <p class="text-center"></p>
+  
+          <!-- Filtros -->
+          <div class="filters">
+            <form class="row g-3">
+              <div class="col-md-3">
+                <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+                <input type="date" class="form-control" id="fechaInicio" name="fechaInicio">
+              </div>
+              <div class="col-md-3">
+                <label for="fechaFin" class="form-label">Fecha Fin</label>
+                <input type="date" class="form-control" id="fechaFin" name="fechaFin">
+              </div>
+              <div class="col-md-3">
+                <label for="estado" class="form-label">Estado</label>
+                <select class="form-select" id="estado" name="estado">
+                  <option value="0">Todos</option>
+                  <option value="1">Pendiente</option>
+                  <option value="2">Aprobado</option>
+                  <option value="3">Rechazado</option>
+                </select>
+              </div>
+              <div class="col-md-3 text-center mt-3">
+                <button type="button" id="searchBtn" class="btn btn-filter" style="margin-top: 27px;">Buscar</button>
+              </div>
+            </form>
+          </div>
+  
+          <!-- Tabla para mostrar las solicitudes -->
+          <table id="solicitudesTable" class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>Cantidad Invitados</th>
+                <th>Fecha Evento</th>
+                <th>Lugar Evento</th>
+                <th>Hora Evento</th>
+                <th>Fecha Solicitud</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--
+              <tr>
+                <td>1</td>
+                <td>Juan Pérez</td>
+                <td>juanperez@example.com</td>
+                <td>985467849</td>
+                <td>100</td>
+                <td>03/12/2024</td>
+                <td>Av Arequipa 2010</td>
+                <td>16:30</td>
+                <td>01/12/2024</td>
+                <td>Pendiente</td>
+                <td>
+                    <div class="d-flex justify-content-start">
+                        <button class="btn btn-success btn-sm me-2" title="Aprobar">
+                          <i class="bi bi-check-circle"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" title="Rechazar">
+                          <i class="bi bi-x-circle"></i>
+                        </button>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>María López</td>
+                <td>marialopez@example.com</td>
+                <td>998741526</td>
+                <td>120</td>
+                <td>05/12/2024</td>
+                <td>Av Larco 520</td>
+                <td>18:40</td>
+                <td>02/12/2024</td>
+                <td>Aprobado</td>
+                <td>
+                    <div class="d-flex justify-content-start">
+                        <button class="btn btn-success btn-sm me-2" title="Aprobar" disabled>
+                          <i class="bi bi-check-circle"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" title="Rechazar" disabled>
+                          <i class="bi bi-x-circle"></i>
+                        </button>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Carlos García</td>
+                <td>carlosgarcia@example.com</td>
+                <td>952414853</td>
+                <td>150</td>
+                <td>08/12/2024</td>
+                <td>Av Wiesse 120</td>
+                <td>20:00</td>
+                <td>02/12/2024</td>
+                <td>Rechazado</td>
+                <td>
+                    <div class="d-flex justify-content-start">
+                        <button class="btn btn-success btn-sm me-2" title="Aprobar" disabled>
+                          <i class="bi bi-check-circle"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" title="Rechazar" disabled>
+                          <i class="bi bi-x-circle"></i>
+                        </button>
+                    </div>
+                </td>
+              </tr>
+              -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">EVENTOS</span>
+          </a>
+          <p>Lo mejor en baile, canto, danza y animación lo encontrarás aquí. No te lo pierdas. estás a un click de tener la mejor fiesta de tu vida!!</p>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href="https://wa.me/51954426824?text=Hola, me gustaría recibir más información" target="_blank"><i class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Links Usados</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">Sobre Nosotros</a></li>
+            <li><a href="services.html">Servicios</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Nuestros Servicios</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contáctanos</h4>
+          <p>A150 Palm Street</p>
+          <p>Piura, NY 535022</p>
+          <p>Perú</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+51 987 654 321</span></p>
+          <p><strong>Email:</strong> <span>info@example.com</span></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">EVENTOS</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Designed by Eventos</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Función para enviar los filtros y obtener los datos
+    document.getElementById('searchBtn').addEventListener('click', function() {
+    const fechaInicio = document.getElementById('fechaInicio').value;
+    const fechaFin = document.getElementById('fechaFin').value;
+    const estado = document.getElementById('estado').value;
+  
+    // Construir la URL con los parámetros de consulta
+    let url = 'http://localhost:5159/api/Solicitudes/filtrar?';
+  
+    if (fechaInicio) {
+      url += `FechaInicio=${encodeURIComponent(fechaInicio)}&`;
+    }
+  
+    if (fechaFin) {
+      url += `FechaFin=${encodeURIComponent(fechaFin)}&`;
+    }
+  
+    if (estado) {
+      url += `Estado=${encodeURIComponent(estado)}&`;
+    }
+  
+    // Eliminar el último '&' extra si lo hay
+    url = url.slice(0, -1);
+  
+    // Llamar al API con GET y parámetros en la URL
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Limpiar la tabla antes de llenarla con nuevos datos
+      const tbody = document.querySelector('#solicitudesTable tbody');
+      tbody.innerHTML = '';
+  
+      // Llenar la tabla con los datos devueltos por el API
+      data.forEach((solicitud, index) => {
+        let _estado = "Pendiente";
+        if(solicitud.estado == "2"){
+            _estado = "Aprobado"
+        }
+        else if(solicitud.estado == "3"){
+            _estado = "Rechazado"
+        }
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${solicitud.solicitudID}</td>
+          <td>${solicitud.nombreUsuario}</td>
+          <td>${solicitud.correo}</td>
+          <td>${solicitud.telefono}</td>
+          <td>${solicitud.cantidadInvitados}</td>
+          <td>${formatearFecha(solicitud.fechaEvento)}</td>
+          <td>${solicitud.lugarEvento}</td>
+          <td>${solicitud.horarioPreferencia}</td>
+          <td>${formatearFecha(solicitud.fechaSolicitud)}</td>
+          <td>${_estado}</td>
+          <td>
+            <div class="d-flex justify-content-start">
+              <button class="btn btn-success btn-sm me-2 aprobar-btn" title="Aprobar" ${solicitud.estado === '2' ? 'disabled' : ''} data-id="${solicitud.solicitudID}" data-estado="2">
+                <i class="bi bi-check-circle"></i>
+              </button>
+              <button class="btn btn-danger btn-sm rechazar-btn" title="Rechazar" ${solicitud.estado === '3' ? 'disabled' : ''} data-id="${solicitud.solicitudID}" data-estado="3">
+                <i class="bi bi-x-circle"></i>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Asignar los eventos a los botones Aprobar y Rechazar después de agregar la tabla
+      document.querySelectorAll('.aprobar-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const solicitudID = this.getAttribute('data-id');
+          const nuevoEstado = this.getAttribute('data-estado');
+          actualizarEstado(solicitudID, nuevoEstado);
+        });
+      });
+
+      document.querySelectorAll('.rechazar-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const solicitudID = this.getAttribute('data-id');
+          const nuevoEstado = this.getAttribute('data-estado');
+          actualizarEstado(solicitudID, nuevoEstado);
+        });
+      });
+    })
+    .catch(error => {
+      console.error('Error al obtener los datos:', error);
+    });
+
+    function formatearFecha(strfecha){
+        const fecha = new Date(strfecha);
+        const dia = fecha.getDate().toString().padStart(2, '0'); // Añadir 0 a la izquierda si es un solo dígito
+        const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Los meses en JavaScript son de 0 a 11, por eso sumamos 1
+        const año = fecha.getFullYear();
+        const fechaFormateada = `${dia}-${mes}-${año}`;
+        return fechaFormateada;
+    }
+
+    // Función para aprobar o rechazar la solicitud
+    function actualizarEstado(solicitudID, nuevoEstado) {
+        let estadoTexto = nuevoEstado === '2' ? 'Aprobar' : 'Rechazar';
+
+        // Mostrar confirmación con SweetAlert
+        Swal.fire({
+            title: `¿Estás seguro de ${estadoTexto.toLowerCase()} esta solicitud?`,
+            text: `Una vez que ${estadoTexto.toLowerCase()} la solicitud, el estado se actualizará.`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: `Sí, ${estadoTexto}`,
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log(solicitudID)
+                console.log(nuevoEstado)
+                const url = `http://localhost:5159/api/Solicitudes/${solicitudID}`;
+                const solicitud = { SolicitudID: solicitudID, Estado: nuevoEstado };
+
+                fetch(url, {
+                  method: 'PUT',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(solicitud)
+                })
+                .then(response => {
+                if (response.ok) {
+                    Swal.fire(
+                        'Estado actualizado',
+                        `La solicitud ha sido ${estadoTexto.toLowerCase()}.`,
+                        'success'
+                    );
+                    // Recargar la tabla o realizar alguna acción después de la actualización
+                    //location.reload();
+                } else {
+                    Swal.fire(
+                        'Error',
+                        'Hubo un problema al actualizar el estado.',
+                        'error'
+                    );
+                }
+                })
+                .catch(error => {
+                    console.error('Error al realizar la solicitud:', error);
+                    Swal.fire(
+                        'Error',
+                        'Hubo un problema al realizar la solicitud.',
+                        'error'
+                    );
+                });
+            }
+            
+        });
+    }
+  });  
+  </script>
+</body>
+
+</html>

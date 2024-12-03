@@ -1,0 +1,18 @@
+.php-email-form .row {
+    display: flex;
+    flex-wrap: nowrap; /* Asegura que todos los campos estén en la misma fila */
+    justify-content: space-between; /* Espacio entre campos */
+}
+
+.php-email-form .col-md-3 {
+    flex: 1; /* Igual ancho para cada campo */
+    margin-right: 10px; /* Espaciado entre los campos */
+}
+
+.php-email-form .col-md-3:last-child {
+    margin-right: 0; /* Sin margen derecho para el último elemento */
+}
+
+.php-email-form .form-control {
+    width: 100%; /* Asegura que los inputs y textarea llenen su contenedor */
+}
